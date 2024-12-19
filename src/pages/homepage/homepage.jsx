@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import FilterBar from "../../components/filterbar/filterbar";
 import MovieList from "../../components/movie-list/movie-list";
 import { useMovieContext } from "../../context/movie-context";
 import { useGenres } from "../../hooks/use-genres";
 import useInfiniteScroll from "../../hooks/use-infinite-scroll";
 import { fetchMovies } from "../../utils/api";
+import CircleLoader from "../../components/loaders/circle-loader";
+import PageContainer from "../../components/page-container/page-container";
 
 export default function Home() {
   const { filters, searchQuery } = useMovieContext();
@@ -55,10 +56,13 @@ export default function Home() {
   useInfiniteScroll(loadMoreMovies, isLoading);
 
   return (
-    <div className="">
-      {/* <Navbar /> */}
-      <FilterBar />
+    <PageContainer>
       <MovieList movies={movies} />
-    </div>
+      {isLoading && (
+        <div className="h-100px w-full flex justify-center">
+          <CircleLoader />
+        </div>
+      )}
+    </PageContainer>
   );
 }
