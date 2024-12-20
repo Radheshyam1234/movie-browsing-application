@@ -57,7 +57,7 @@ export default function HomePage() {
     <PageContainer>
       <MovieList movies={movies} />
       {isLoading && (
-        <div className="h-100px w-full flex justify-center">
+        <div className="py-10 h-100px w-full flex justify-center">
           <CircleLoader />
         </div>
       )}
