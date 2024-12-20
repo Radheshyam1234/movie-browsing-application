@@ -11,7 +11,6 @@ const useHomepage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  // Fetch movies and append them to the list
   const loadMoreMovies = useCallback(async () => {
     if (isLoading || !hasMore) return;
     setIsLoading(true);
