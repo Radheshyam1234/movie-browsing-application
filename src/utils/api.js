@@ -1,7 +1,15 @@
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTc4Y2JmMGQzOWU5MzNiMWJiNGEzYWQzZjU0NGY3ZiIsIm5iZiI6MTczNDUzNjY0MC4zMTIsInN1YiI6IjY3NjJlZGMwNTVjZDJkZWM5OGZmZTlhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t7F0cHnXoEsOpGDm7d8Am3S8aWpbqvUewmb0jqgQXxE",
+  },
+};
+
 export const fetchMovies = async (page, filters, searchQuery = "") => {
   const { genre, minYear, maxYear, minRating, maxRating } = filters;
 
-  // Build filters dynamically
   const genreQuery = genre ? `&with_genres=${genre}` : "";
   const yearQuery =
     (minYear ? `&primary_release_date.gte=${minYear}-01-01` : "") +
@@ -9,15 +17,6 @@ export const fetchMovies = async (page, filters, searchQuery = "") => {
   const ratingQuery =
     (minRating ? `&vote_average.gte=${minRating}` : "") +
     (maxRating ? `&vote_average.lte=${maxRating}` : "");
-
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTc4Y2JmMGQzOWU5MzNiMWJiNGEzYWQzZjU0NGY3ZiIsIm5iZiI6MTczNDUzNjY0MC4zMTIsInN1YiI6IjY3NjJlZGMwNTVjZDJkZWM5OGZmZTlhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t7F0cHnXoEsOpGDm7d8Am3S8aWpbqvUewmb0jqgQXxE",
-    },
-  };
 
   try {
     let baseUrl;
@@ -66,5 +65,18 @@ export const fetchMovies = async (page, filters, searchQuery = "") => {
   } catch (error) {
     console.error("Error fetching movies:", error);
     throw error;
+  }
+};
+
+export const fetchGenres = async () => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/genre/movie/list?language=en-US`,
+      options
+    );
+    const data = await response.json();
+    return data.genres || [];
+  } catch (err) {
+    console.log(err);
   }
 };

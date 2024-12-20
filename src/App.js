@@ -1,12 +1,7 @@
-import { MovieProvider } from "./context/movie-context";
-import Home from "./pages/homepage/homepage";
+import HomePage from "./pages/homepage/homepage";
 
 function App() {
-  return (
-    <MovieProvider>
-      <Home />
-    </MovieProvider>
-  );
+  return <HomePage />;
 }
 
 export default App;

@@ -7,14 +7,12 @@ import { fetchMovies } from "../../utils/api";
 import CircleLoader from "../../components/loaders/circle-loader";
 import PageContainer from "../../components/page-container/page-container";
 
-export default function Home() {
+export default function HomePage() {
   const { filters, searchQuery } = useMovieContext();
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-
-  const { genres } = useGenres();
 
   // Fetch movies and append them to the list
   const loadMoreMovies = useCallback(async () => {

@@ -7,8 +7,8 @@ export const useMovieContext = () => useContext(MovieContext);
 export const MovieProvider = ({ children }) => {
   const [filters, setFilters] = useState({
     genre: "",
-    minYear: "",
-    maxYear: "",
+    minYear: 1950,
+    maxYear: 2000,
     minRating: 0,
     maxRating: 10,
   });

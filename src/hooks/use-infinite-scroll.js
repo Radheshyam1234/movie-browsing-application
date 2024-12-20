@@ -8,7 +8,6 @@ const useInfiniteScroll = (callback, isLoading) => {
           document.documentElement.scrollHeight - 100 &&
         !isLoading
       ) {
-        console.log("hello");
         callback();
       }
     };
