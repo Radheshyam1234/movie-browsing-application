@@ -4,7 +4,6 @@ import useGenreFilter from "./use-genre-filter";
 const GenreFilter = () => {
   const { genresData, selectedGenre, handleGenreClick } = useGenreFilter();
 
-  console.log(selectedGenre);
   return (
     <div className="py-1 md:py-2 ">
       <div className="w-full overflow-auto no-scrollbar inline-flex gap-2">

@@ -19,7 +19,6 @@ const useGenreFilter = () => {
     handleGetGenresData();
   }, []);
 
-  console.log(filters);
   return {
     genresData,
     handleGenreClick,

@@ -24,7 +24,6 @@ export const useGenres = () => {
         );
         const data = await response.json();
         setGenres(data.genres || []);
-        console.log(data, "generes");
       } catch (err) {
         setError(err.message);
       }
