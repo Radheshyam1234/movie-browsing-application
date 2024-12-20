@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between shadow-lg p-2.5 sticky top-0 bg-gray-800 z-20  px-4 md:px-10">
+    <header
+      role="banner"
+      aria-label="Site header"
+      className="flex justify-between shadow-lg p-2.5 sticky top-0 bg-gray-800 z-20  px-4 md:px-10"
+    >
       <Link to="/">
         <p className="hidden md:block text-2xl font-semibold text-green-700">
           Movie Sagar
@@ -17,7 +21,7 @@ const Navbar = () => {
           <img src={HeartFillIcon} alt="favourite.svg" className="" />
         </div>
       </Link>
-    </div>
+    </header>
   );
 };
 

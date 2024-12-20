@@ -12,7 +12,7 @@ const RatingAndyearFilter = () => {
   };
 
   return (
-    <div className="space-y-1 md:space-y-2 px-2 flex items-center justify-between">
+    <div className="space-y-1 md:space-y-2 px-2 flex items-center gap-2 xs:gap-10">
       <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
         <div className=" space-y-2 text-[#fff]">
           <div className="flex items-center gap-2">

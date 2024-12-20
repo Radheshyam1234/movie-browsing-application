@@ -8,7 +8,7 @@ export const MovieProvider = ({ children }) => {
   const [filters, setFilters] = useState({
     genre: "",
     minYear: 1950,
-    maxYear: 2000,
+    maxYear: 2024,
     minRating: 0,
     maxRating: 10,
   });

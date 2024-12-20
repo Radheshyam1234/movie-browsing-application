@@ -1,63 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
 import MovieList from "../../components/movie-list/movie-list";
-import { useMovieContext } from "../../context/movie-context";
-import { useGenres } from "../../hooks/use-genres";
-import useInfiniteScroll from "../../hooks/use-infinite-scroll";
-import { fetchMovies } from "../../utils/api";
+
 import CircleLoader from "../../components/loaders/circle-loader";
 import PageContainer from "../../components/page-container/page-container";
+import useHomepage from "./use-homepage";
 
 export default function HomePage() {
-  const { filters, searchQuery } = useMovieContext();
-  const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-
-  // Fetch movies and append them to the list
-  const loadMoreMovies = useCallback(async () => {
-    if (isLoading || !hasMore) return;
-    setIsLoading(true);
-    const { results, total_pages } = await fetchMovies(
-      currentPage,
-      filters,
-      searchQuery
-    );
-
-    if (currentPage >= total_pages) setHasMore(false);
-
-    setMovies((prev) => [...prev, ...results]);
-    setCurrentPage((prev) => prev + 1);
-    setIsLoading(false);
-  }, [currentPage, filters, searchQuery, isLoading, hasMore]);
-
-  // Fetch initial movies when filters change
-  useEffect(() => {
-    const fetchInitialMovies = async () => {
-      setIsLoading(true);
-      const { results, total_pages } = await fetchMovies(
-        1,
-        filters,
-        searchQuery
-      );
-
-      setMovies(results);
-      setCurrentPage(2); // Start loading from page 2 for infinite scroll
-      setHasMore(true);
-      setIsLoading(false);
-    };
-
-    fetchInitialMovies();
-  }, [filters, searchQuery]);
-
-  // Attach infinite scrolling
-  useInfiniteScroll(loadMoreMovies, isLoading);
-
+  const { isLoading, movies } = useHomepage();
   return (
     <PageContainer>
-      <MovieList movies={movies} />
+      <MovieList movies={movies} isLoading={isLoading} />
       {isLoading && (
-        <div className="py-10 h-100px w-full flex justify-center">
+        <div className="py-10 h-full w-full flex justify-center items-center">
           <CircleLoader />
         </div>
       )}

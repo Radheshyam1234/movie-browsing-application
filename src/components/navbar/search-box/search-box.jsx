@@ -19,6 +19,7 @@ const SearchBox = () => {
         placeholder="Search by movie name..."
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
+        aria-label="Search for movies"
       />
     </div>
   );

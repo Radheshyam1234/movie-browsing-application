@@ -5,7 +5,7 @@ const useInfiniteScroll = (callback, isLoading) => {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-          document.documentElement.scrollHeight - 10 &&
+          document.documentElement.scrollHeight - 20 &&
         !isLoading
       ) {
         callback();
