@@ -17,10 +17,15 @@ const GenreFilter = () => {
               }`}
               key={genre?.id}
               onClick={() => {
-                handleGenreClick(genre);
+                handleGenreClick(selectedGenre === genre?.id ? "" : genre?.id);
               }}
             >
-              <p className="whitespace-nowrap font-medium">{genre?.name}</p>
+              <p className="whitespace-nowrap font-medium">
+                {genre?.name}{" "}
+                {selectedGenre === genre?.id && (
+                  <span className="text-red-500">&#10008;</span>
+                )}
+              </p>
             </div>
           );
         })}

@@ -11,8 +11,8 @@ const useGenreFilter = () => {
     setGenresData(data);
   };
 
-  const handleGenreClick = (genre) => {
-    updateFilters({ genre: genre?.id });
+  const handleGenreClick = (genreId) => {
+    updateFilters({ genre: genreId });
   };
 
   useEffect(() => {
