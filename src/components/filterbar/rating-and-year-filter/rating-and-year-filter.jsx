@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMovieContext } from "../../../context/movie-context";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 
 const RatingAndyearFilter = () => {
-  const { filters, updateFilters, updateSearchQuery } = useMovieContext();
-  const [localFilters, setLocalFilters] = useState(filters);
+  const { filters, updateFilters } = useMovieContext();
+  const [localFilters, setLocalFilters] = useState();
+
+  useEffect(() => {
+    setLocalFilters(filters);
+  }, [filters]);
 
   const handleApplyFilters = () => {
     updateFilters(localFilters);
